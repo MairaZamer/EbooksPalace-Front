@@ -13,7 +13,7 @@ export const Profile = () => {
         const fetchUserProfile = async () => {
 
             try {
-                const response = await axios.post('http://localhost:3001/userverify', {
+                const response = await axios.post('https://ebookspalace.onrender.com/userverify', {
                     name: user.name,
                     email: user.email,
                     profilePicture: user.picture,

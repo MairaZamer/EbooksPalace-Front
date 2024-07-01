@@ -104,9 +104,14 @@ const Form = () => {
                 const response = await axios.post("http://localhost:3001/books", {
                     ...input,
                     image: URL_Image,
+
+                };
+                const response = await axios.post("https://ebookspalace.onrender.com/books", formData);
+
                     file: URL_File,
                 });
                 console.log(response)
+
                 if (response.status === 200) {
                     console.log("Libro creado con éxito", response.data);
                     setSuccessMessage("El libro fue creado exitosamente");
