@@ -38,14 +38,15 @@ const NavBar = () => {
         </Link>
       </div>
       <div>
-        {isAuthenticated ? (
-          <>
-            <Profile />
-            <LogoutButton />
-          </>
-        ) : (
-          <LoginButton />
-        )}
+        {isAuthenticated ? <>
+          <Profile />
+          <div className='downloads'>
+            <Link to='/downloads'>
+              <button>Descargas</button>
+            </Link>
+          </div>
+          <LogoutButton />
+        </> : <LoginButton />}
       </div>
       <div className="navbar-right">
         <img

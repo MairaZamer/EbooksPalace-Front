@@ -10,6 +10,7 @@ import NavBar from './components/Nav/Nav.jsx';
 import PrivateRoute from './components/privateRoute/privateRoute.jsx';
 import { LoginButton } from './components/Login/Login.jsx';
 
+import Downloads from './pages/Downloads/Downloads.jsx'
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
           <Route path='/login' element={<LoginButton />} />
           <Route path='/cartitem' element={<PrivateRoute element={<Cart />} />} />
           <Route path='/checkout' element={<PrivateRoute element={<Checkout />} />} />
+          <Route path='/downloads' element={<Downloads></Downloads>} />
         </Routes>
       </div>
     </>

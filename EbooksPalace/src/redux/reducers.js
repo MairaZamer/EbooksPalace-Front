@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_ITEM, UPDATE_QUANTITY, EMPTY_CART, SET_USER_PROFILE } from './actions';
+import { ADD_TO_CART, REMOVE_ITEM, EMPTY_CART, SET_USER_PROFILE, FETCH_PAID_BOOKS_REQUEST, FETCH_PAID_BOOKS_SUCCESS, FETCH_PAID_BOOKS_FAILURE } from './actions';
 
 const initialState = {
   cart: [],
@@ -43,4 +43,23 @@ const userReducer = (state = initialUserState, action) => {
   }
 };
 
-export { cartReducer, userReducer };
+const initialBookState = {
+  loading: false,
+  books: [],
+  error: null
+};
+
+const booksReducer = (state = initialBookState, action) => {
+  switch (action.type) {
+    case FETCH_PAID_BOOKS_REQUEST:
+      return { ...state, loading: true, error: null };
+    case FETCH_PAID_BOOKS_SUCCESS:
+      return { ...state, loading: false, books: action.payload };
+    case FETCH_PAID_BOOKS_FAILURE:
+      return { ...state, loading: false, error: action.error };
+    default:
+      return state;
+  }
+};
+
+export { cartReducer, userReducer, booksReducer };

@@ -5,6 +5,9 @@ export const REMOVE_ITEM = 'REMOVE_ITEM';
 export const UPDATE_QUANTITY = 'UPDATE_QUANTITY';
 export const EMPTY_CART = 'EMPTY_CART';
 export const SET_USER_PROFILE = 'SET_USER_PROFILE';
+export const FETCH_PAID_BOOKS_REQUEST = 'FETCH_PAID_BOOKS_REQUEST';
+export const FETCH_PAID_BOOKS_SUCCESS = 'FETCH_PAID_BOOKS_SUCCESS';
+export const FETCH_PAID_BOOKS_FAILURE = 'FETCH_PAID_BOOKS_FAILURE';
 
 export const addToCart = (product) => async (dispatch) => {
   try {
@@ -17,7 +20,7 @@ export const addToCart = (product) => async (dispatch) => {
       payload: response.data,
     });
 
-    return response.data; 
+    return response.data;
   } catch (error) {
     throw error;
   }
@@ -76,3 +79,16 @@ export const setUserProfile = (userProfile) => ({
     payload: userProfile,
   };
 }; */
+
+export const fetchPaidBooks = (userId) => async (dispatch) => {
+  dispatch({ type: FETCH_PAID_BOOKS_REQUEST });
+  try {
+    const response = await axios.get(`http://localhost:3001/paid-cart/${userId}`);
+    dispatch({
+      type: FETCH_PAID_BOOKS_SUCCESS,
+      payload: response.data
+    });
+  } catch (error) {
+    dispatch({ type: FETCH_PAID_BOOKS_FAILURE, error });
+  }
+}
